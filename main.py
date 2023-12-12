@@ -21,14 +21,24 @@ def count_letters():
         letter_dic[i] += 1 
     return letter_dic
 
-def book_report(wordcount,letter_dic):
+def book_report():
+    text = get_text()
+    wordcount = count_words(text)
+    letter_dic = count_letters()
+    list_of_letters = list(letter_dic.items())
+    list_of_letters_sorted = sorted(list_of_letters,key=lambda x: x[1], reverse=True)
+
     print("---Begin report of books/frankenstein.txt---")
     print(f"{wordcount} words found in the document")
-    for char in letter_dic: 
-        count = letter_dic[char]
-        print(f"The {char} character was found {count} times")
+    
+    for i in range(len(list_of_letters_sorted)): 
+        key,value = list_of_letters_sorted[i]
+        if key.isalpha():
+            print(f"The {key} character was found {value} times")
+            
     print("--- end report")
 
+book_report()
 
 
 
